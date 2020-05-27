@@ -4,7 +4,7 @@ pipeline {
         stage ('Add sudo user') {
             steps {
                 sh '''
-                    useradd 'notroot'
+                    useradd notroot
                 '''
             }
           }
