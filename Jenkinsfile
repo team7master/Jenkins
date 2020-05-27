@@ -3,17 +3,13 @@ pipeline {
     stages {
         stage ('Add sudo user') {
             steps {
-                sh '''
-                    useradd notroot
-                '''
-            }
+                sh 'useradd notroot'
+             }
           }
         stage ('Privileges to sudoers file') {
             steps {
-                sh '''
-                    echo "notroot  ALL=(ALL) NOPASSWD:  ALL" >> '/etc/sudoers'
-                    cat '/etc/sudoers' >> 'report.txt'
-                '''
+                sh 'echo "notroot  ALL=(ALL) NOPASSWD:  ALL" >> /etc/sudoers'
+                sh 'cat /etc/sudoers >> report.txt'
             }
           }
         stage ('Update the OS with new user') {
