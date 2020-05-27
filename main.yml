@@ -1,0 +1,30 @@
+---
+- name: install jenkins
+  hosts: jenkins
+  remote_user: ansible
+  become: yes
+  tasks:
+  - name: install all initial package
+    yum:
+      name: ['java git', 'jenkins']
+      state: latest
+
+  - name: import GPG key
+    curl:      
+      src: curl --silent --location http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo | tee /etc/yum.repos.d/jenkins.repo
+
+  - name: add repository
+    copy:
+      src: rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+
+  - name: jenkins is started
+    service:
+      name: jenkins
+      state: started
+      enabled: true
+ - name: firewalld enabled and running
+   service:
+     name: firewall-cmd
+     permanet: true
+     add port: 8080/tcp
+     state: enable
