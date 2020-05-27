@@ -5,7 +5,7 @@ pipeline {
             steps {
                 sh '''
                     useradd 'notroot'
-                    echo "password" | passwd --stdin 'notroot'
+                    echo 'password' | passwd --stdin 'notroot'
                     tail /etc/passwd > 'report.txt'
                 '''
             }
