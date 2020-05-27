@@ -10,7 +10,7 @@ pipeline {
                 """
             }
           }
-        stage (Privileges to sudoers file) {
+        stage ('Privileges to sudoers file') {
             steps {
                 sh """
                    'sh label: '', script: '''echo "notroot  ALL=(ALL) NOPASSWD:  ALL" >> /etc/sudoers
