@@ -32,6 +32,7 @@ pipeline {
                 sh """
                    sh label: '', script: 'userdel notroot -r'
                    sh label: '', script: 'tail /etc/sudoers >> report.txt'
+                """
             }//steps
         }//stage
     }//stages
